@@ -8,6 +8,9 @@ const Header = ({ appTitle }: { appTitle: string }) => (
                 <li className="nav-item">
                     <Link className="nav-link" href="/contacts">Contacts</Link>
                 </li>
+                <li className="nav-item">
+                    <Link className="nav-link" href="/contacts/form">New Contact</Link>
+                </li>
             </ul>
         </div>    
     </nav>

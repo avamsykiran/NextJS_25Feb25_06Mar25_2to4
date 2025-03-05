@@ -1,6 +1,6 @@
 "use client"
 
-import { getAllContactsFromApi } from "@/lib/ContactsApiCalls";
+import { getAllContactsFromApi, removeContactByIdFromApi } from "@/lib/ContactsApiCalls";
 import Contact from "@/models/Contact";
 import { useEffect, useState } from "react";
 
@@ -26,6 +26,19 @@ const Contacts = () => {
             });
     }
 
+    const del = (id: number) => {
+        setLoading(true);
+        removeContactByIdFromApi(id)
+            .then(resp => {
+                loadData();
+            })
+            .catch(exception => {
+                console.error(exception);
+                setErr("Unable to remove! Please retry!");
+                setLoading(false);
+            });
+    }
+
     useEffect(loadData, []);
 
     return (
@@ -47,6 +60,7 @@ const Contacts = () => {
                         <th>Full Name</th>
                         <th>Mobile</th>
                         <th>Mail Id</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,6 +71,11 @@ const Contacts = () => {
                                 <td>{c.fullName}</td>
                                 <td>{c.mobile}</td>
                                 <td>{c.mail}</td>
+                                <td>
+                                    <button className="btn btn-sm" onDoubleClick={ _e => del(c.contactId) }>
+                                        <i className="bi bi-trash" ></i>
+                                    </button>
+                                </td>
                             </tr>
                         ))
                     }

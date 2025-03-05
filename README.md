@@ -342,7 +342,7 @@ NextJS
 
         npm i react-hook-form
 
-         const {
+        const {
             register,
             handleSubmit,
             formState: { errors },
@@ -351,7 +351,8 @@ NextJS
         const onSubmit = handleSubmit((data) => console.log(data))
 
         <form onSubmit={onSubmit}>
-            <input {...register("fieldName")} placeholder="Bill" />
-            
-            <input type="submit" />
+            <input {...register("fieldName",{ required:true })} placeholder="Bill" />
+            {errors.fieldName && <p>This is a mandatory field</p>}
+
+            <button>SAVE</button>
         </form>

@@ -10,5 +10,5 @@ export const GET = async (request:Request, {params}:any) => {
 export const DELETE = async (request:Request, {params}:any) => {
     let id = params.id;
     await removeContact(Number(id));
-    return NextResponse.json({},{status:204});
+    return NextResponse.json({},{status:200});
 }
