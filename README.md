@@ -356,3 +356,21 @@ NextJS
 
             <button>SAVE</button>
         </form>
+
+    Server Actions
+
+        an asynchronous function marked as 'use server' in the first line
+        of the function implementation.
+
+        these are used to execute any task on the server and can be invoked from
+        any form action or form element events or from useEffect from client components.
+
+        these are introduced as an experitmental feature in nextjs 13 and are
+        fully available in nextjs14.
+
+        async function save(contact:Contact) {
+            'use server'
+
+            await addContact(contact);
+            redirect("/contacts");
+        }

@@ -2,6 +2,7 @@
 
 import { getAllContactsFromApi, removeContactByIdFromApi } from "@/lib/ContactsApiCalls";
 import Contact from "@/models/Contact";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Contacts = () => {
@@ -72,6 +73,9 @@ const Contacts = () => {
                                 <td>{c.mobile}</td>
                                 <td>{c.mail}</td>
                                 <td>
+                                    <Link className="btn btn-sm me-1" href={`/contacts/form/${c.contactId}`}>
+                                        <i className="bi bi-pen" ></i>
+                                    </Link>
                                     <button className="btn btn-sm" onDoubleClick={ _e => del(c.contactId) }>
                                         <i className="bi bi-trash" ></i>
                                     </button>
